@@ -10,25 +10,66 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
+
+/*
+** The strdup() function allocates sufficient memory for a copy of the
+** string s1, does the copy, and returns a pointer to it.  The pointer may
+** subsequently be used as an argument to the function free(3).
+** If insufficient memory is available, NULL is returned
+*/
+
+/*
 #include <stdlib.h>
 
-char	*ft_strdup(char *src)
+size_t	ft_strlen(const char *str)
 {
-	char	*duplicate;
-	int		len;
+	size_t i;
 
-	len = 0;
-	while (src[len])
-		len++;
-	duplicate = (char*)malloc(sizeof(*duplicate) * (len + 1));
-	if (!duplicate)
-		return (NULL);
-	len = 0;
-	while (src[len])
-	{
-		duplicate[len] = src[len];
-		len++;
-	}
-	duplicate[len] = '\0';
-	return (duplicate);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
+
+*/
+char    *ft_strdup(char *src)
+{
+	int i;
+	char *dup;
+	int len;
+
+	len = ft_strlen(src);
+	i = 0;
+	dup = (char *)malloc(sizeof(*dup) *(len + 1));
+	if (!dup)
+		return (NULL);
+	while(src[i])
+	{
+		dup[i] = src[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return(dup);
+}
+
+/*
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+	char *str;
+
+	//str = "123";
+	//str = "+hello";
+	//str = "wer24";
+	//str = "-this is it";
+	//str = "+-346";
+	str = "&df-67";
+	printf("%s\n", ft_strdup(str));
+	printf("%s", strdup(str));
+	return(0);
+}
+*/
+

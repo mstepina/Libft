@@ -14,16 +14,43 @@
 
 int	ft_atoi(const char *str)
 {
-	int res;
 	int sign;
+	int res;
 
-	res = 0;
 	sign = 1;
-	while (*str && (*str == 32 || (*str > 8 && *str < 14)))
-		str++;
+	res = 0;
+	while(*str && ((*str > 8 && *str < 14) || *str == 32))
+	        str++;
 	if (*str == '-' || *str == '+')
-		sign = (*(str++) == '-' ? -1 : 1);
-	while (ft_isdigit(*str))
-		res = res * 10 + *(str++) - '0';
-	return (res * sign);
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;	
+	}
+	while(*str >= '0' && *str <='9')
+	{
+		res = res * 10 + (*str - '0');
+		str++;
+	}
+	return (sign * res);
 }
+
+/*		
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	const char *str;
+	
+	//str = "123";
+	//str = "+123;gh";
+	//str = "wer24";
+	//str = "-12345";
+	//str = "+-346";
+	str = "&df-67";
+	printf("%d\n", ft_atoi(str));
+	printf("%d", atoi(str));
+	return(0);
+}
+/*
